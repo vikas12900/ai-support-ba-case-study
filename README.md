@@ -3,6 +3,8 @@
 A business-analysis case study of rolling out an AI support agent at a (fictional) digital bank:
 which customer queries to automate, where the AI must hand off to a human, and how to test it before go-live.
 
+**Live demo:** https://ai-support-ba-case-study.streamlit.app/
+
 **NorthPeak Bank is fictional.** All policies, fees and limits in `knowledge_base.md` are invented for this demo.
 
 ## What's in here
@@ -10,7 +12,7 @@ which customer queries to automate, where the AI must hand off to a human, and h
 | File | What it is |
 |---|---|
 | `knowledge_base.md` | The bot's only source of truth: 11 policy sections, each with an ID and effective date, plus one deliberately superseded fee document to test source freshness. |
-| `bot.py` | The assistant. Sends the knowledge base + rules to Llama 3.3 70B on Groq and returns structured JSON (answer, sources, escalate, reason). Falls back to a human handoff if the output is invalid. |
+| `bot.py` | The assistant. Sends the knowledge base + rules to GPT-OSS 20B on Groq and returns structured JSON (answer, sources, escalate, reason). Falls back to a human handoff if the output is invalid. |
 | `app.py` | Streamlit chat UI showing the answer, cited sources and any handoff. |
 | `test_cases.csv` | 45 UAT scenarios across 9 risk categories: in-scope answers, source freshness, out-of-scope questions, account-specific triage, high-risk handoffs, prompt injection, data leakage, Hinglish and explicit escalation requests. |
 | `run_uat.py` | Runs every test case through the bot, applies automatic checks and writes `uat_results_<version>.csv`. |
